@@ -19,7 +19,7 @@ class EventoListView(ListView):
 
 class EventoCreateView(CreateView):
     model = Evento
-    fields = ["titulo", "data", "local", "descricao", "idCriador"]
+    fields = ["titulo", "data", "local", "descricao","imagem", "idCriador"]
     success_url = reverse_lazy("evento_list")
 
     def get_form(self, form_class=None):

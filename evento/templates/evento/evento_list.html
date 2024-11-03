@@ -55,22 +55,31 @@
         </header>
         <!-- Section-->
         <section class="py-5">
-
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-success" href="{% url 'evento_create' %}">Nova Tarefa</a>
+            </div>
         
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for evento in evento_list %}
-                    <div class="col mb-5">
+                    <div class="col mb-5"  style="max-height: 800px;">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="img-responsive"  style="max-height: 400px; width: auto;"  src="{% if evento.imagem %}{{ evento.imagem.url }}{% else %}https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png{% endif %}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ evento.titulo }}</h5>
                                     <!-- Product price-->
-                                    {{ evento.data }}
+                                    <h5 >{{ evento.data }}</h5>
+                                    <div class="overflow-hidden" style="max-height: 100px; text-overflow: ellipsis;  display: -webkit-box; 
+                                    -webkit-box-orient: vertical; 
+                                    -webkit-line-clamp: 4; /* Defina o número máximo de linhas */" >
+                                    <span class="text-secondary">
+                                    {{ evento.descricao }}
+                                    </span>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -81,9 +90,7 @@
                     </div>
 
                     {% endfor %}
-                    <div class="d-flex justify-content-center">
-                        <a class="btn btn-success" href="{% url 'evento_create' %}">Nova Tarefa</a>
-                    </div>
+
                 </div>
             </div>
         </section>
