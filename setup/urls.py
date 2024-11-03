@@ -18,6 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from evento.views import home
+from evento.views import EventoListView
+from evento.views import EventoCreateView
 
-
-urlpatterns = [path("admin/", admin.site.urls), path("", home)]
+urlpatterns = [path("admin/", admin.site.urls),
+    path("", EventoListView.as_view(), name="evento_list"),
+    path("create", EventoCreateView.as_view(), name="evento_create")]
