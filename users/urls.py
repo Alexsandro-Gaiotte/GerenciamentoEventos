@@ -1,14 +1,14 @@
 from django.contrib import admin
 from django.urls import path
-from users.views import register_view
+from users.views import register_view, login_view
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'eventos'
+app_name = 'users'
 
 urlpatterns = [path("admin/", admin.site.urls),
-    path("register/", register_view, name="register")
-    
+    path("register/", register_view, name="register"),
+    path("login/", login_view, name="login")    
     ]
 
 if settings.DEBUG:
