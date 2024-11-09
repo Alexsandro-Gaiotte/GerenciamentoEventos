@@ -1,13 +1,14 @@
 from django.contrib import admin
-from django.urls import path, include
-from evento.views import EventoCreateView, EventoListView, evento_page
+from django.urls import path
+from users.views import register_view
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = 'eventos'
 
 urlpatterns = [path("admin/", admin.site.urls),
-    path("", include('evento.urls')),
-    path("users/", include('users.urls')),
+    path("register/", register_view, name="register")
+    
     ]
 
 if settings.DEBUG:

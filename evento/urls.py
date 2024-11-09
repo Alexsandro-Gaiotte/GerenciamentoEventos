@@ -1,13 +1,16 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from evento.views import EventoCreateView, EventoListView, evento_page
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = 'evento'
 
 urlpatterns = [path("admin/", admin.site.urls),
-    path("", include('evento.urls')),
-    path("users/", include('users.urls')),
+    path("", EventoListView.as_view(), name="evento_list"),
+    path("create", EventoCreateView.as_view(), name="evento_create"),
+    path("<slug:slug>", evento_page, name="evento_page")
+    
     ]
 
 if settings.DEBUG:

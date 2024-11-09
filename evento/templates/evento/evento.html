@@ -55,30 +55,43 @@
         </header>
         <!-- Section-->
         <section class="py-5">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-success" href="{% url 'evento:evento_create' %}">Nova Tarefa</a>
+            </div>
+        
             <div class="container px-4 px-lg-5 mt-5">
-                <div class=" justify-content-center">
-                   <h1 class="display-4 fw-bolder">Novo Evento</h1>         
-                    <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="mb-3">
-                        <label class="form-label" for="{{ field.id_for_label }}">
-                            {{ field.label }}
-                        </label>
-                        {{ field }}
-                        {% if field.help_text %}
-                            <small class="form-text text-muted">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+
+                    <div class="col mb-5"  style="max-height: 800px;">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="img-responsive"  style="max-height: 400px; width: auto;"  src="{% if evento.imagem %}{{ evento.imagem.url }}{% else %}https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png{% endif %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ evento.titulo }}</h5>
+                                    <!-- Product price-->
+                                    <h5 >{{ evento.data }}</h5>
+                                    <div class="overflow-hidden" style="max-height: 100px; text-overflow: ellipsis;  display: -webkit-box; 
+                                    -webkit-box-orient: vertical; 
+                                    -webkit-line-clamp: 4; /* Defina o número máximo de linhas */" >
+                                    <span class="text-secondary">
+                                    {{ evento.descricao }}
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url "evento:evento_page" slug=evento.slug%}">View options</a></div>
+                            </div>
                         </div>
-                    {% endfor %}
-                    <div class="d-flex justify-content-between">  
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <a href="{% url 'evento:evento_list' %}" class="btn btn-danger">Cancelar</a>
                     </div>
-                    </form>
+
+
 
                 </div>
             </div>
@@ -93,5 +106,3 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
-
-
