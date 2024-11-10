@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Evento
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def home(request):
     eventos = Evento.objects.all()
@@ -16,11 +16,13 @@ def evento_page(request, slug):
     evento = Evento.objects.get(slug=slug)
     return render(request, "evento/evento.html", {"evento": evento})
 
-
-class EventoCreateView(CreateView):
+ # Verifica se o usuário está logado. Caso não esteja, será redirecionado para o login
+class EventoCreateView(LoginRequiredMixin, CreateView):
     model = Evento
     fields = ["titulo", "data", "local", "descricao","imagem", "idCriador", 'slug']
     success_url = reverse_lazy("evento_list")
+    login_url = "/users/login/"  # URL para redirecionamento caso não esteja logado
+    redirect_field_name = "next"  # Campo de redirecionamento após login
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
