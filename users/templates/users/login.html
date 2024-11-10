@@ -9,20 +9,7 @@ Shop Homepage - Login
            <h1 class="display-4 fw-bolder">Login de usuário</h1>         
             <form method="post" action="/users/login/" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% for field in form %}
-                <div class="mb-3">
-                <label class="form-label" for="{{ field.id_for_label }}">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                    <div class="invalid-feedback">{{ error }}</div>
-                {% endfor %}
-                </div>
-            {% endfor %}
+                {{form}}
                 {% if request.GET.next  %}
                     <input type="hidden" name="next" value='{{ request.GET.next }}'/>
                 {% endif %}

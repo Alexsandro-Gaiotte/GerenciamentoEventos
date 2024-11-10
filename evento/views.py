@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Evento
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -28,7 +28,7 @@ class EventoCreateView(LoginRequiredMixin, CreateView):
         form = super().get_form(form_class)
         # Adiciona a classe 'form-control' a todos os inputs, textareas e selects
         for field in form.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})
+            field.widget.attrs.update({'class': 'form-control m-3'})
         return form
     
 
@@ -36,3 +36,13 @@ class EventoCreateView(LoginRequiredMixin, CreateView):
         # Define o usuário logado como criador do evento
         form.instance.criador = self.request.user
         return super().form_valid(form)
+
+class EventoDeleteView(DeleteView):
+    model = Evento
+    template_name = 'evento/evento_confirm_delete.html'
+    context_object_name = 'evento'
+    success_url = reverse_lazy('evento:evento_list')
+
+    # Redefinindo o método para garantir que apenas o criador possa excluir
+    def get_queryset(self):
+        return Evento.objects.filter(criador=self.request.user.id)

@@ -11,7 +11,7 @@ def register_view(request):
     else:
         form = UserCreationForm()
     for field in form.fields.values():
-        field.widget.attrs.update({'class': 'form-control'})
+        field.widget.attrs.update({'class': 'form-control m-3'})
         
     return render(request, 'users/register.html', {"form":form})
 
@@ -29,7 +29,7 @@ def login_view(request):
         form = AuthenticationForm()
         
     for field in form.fields.values():
-        field.widget.attrs.update({'class': 'form-control'})
+        field.widget.attrs.update({'class': 'form-control m-3'})
     
     return render(request, 'users/login.html', {"form":form})
 

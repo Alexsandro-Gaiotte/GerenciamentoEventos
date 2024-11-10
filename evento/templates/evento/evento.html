@@ -29,7 +29,13 @@ Shop Homepage - {{ evento.titulo }}
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url "evento:evento_page" slug=evento.slug%}">View options</a></div>
+                        <div class="text-center">
+                            {% if evento.criador == user %}
+                            
+                            <a href="{% url 'evento:evento_delete' slug=evento.slug %}" class="btn btn-danger mt-3">Excluir Evento</a>
+                            {% endif %}
+                            <!-- Botão de exclusão -->
+                        </div>
                     </div>
                 </div>
             </div>
