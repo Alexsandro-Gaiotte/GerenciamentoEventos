@@ -4,10 +4,8 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-def home(request):
-    eventos = Evento.objects.all()
-    print(eventos)
-    return render(request, "evento/Home/home.html", {"eventos": eventos})
+def evento_home(request):
+    return render(request, "home.html")
 
 class EventoListView(ListView):
     model = Evento

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+Shop Homepage - Home
+{% endblock %}
+{% block content%}
+
+<section style='padding:3%' class="text-center">
+    <div class="container">
+      <h1 class="m-4">Bem-vindo ao Eventify</h1>
+      <p class="lead text-muted">O maior ponto de encontro de eventos do Brasil!!</p>
+      <p style='margin-top:4%; margin-bottom:12%'>
+        <a href="{% url "evento:evento_list"%}" class="btn btn-primary my-2">Eventos</a>
+        <a href="{% url "evento:evento_create"%}" class="btn btn-success my-2">Adicionar evento</a>
+      </p>
+    </div>
+</section>
+{% endblock %}
+

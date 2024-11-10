@@ -29,7 +29,8 @@
                     {% if user.is_authenticated %}
                         
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_list"%}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "home"%}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_list"%}">Eventos</a></li>
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_create"%}">Adicionar Evento</a></li>
                         </ul>
                         <span class="navbar-text text-dark me-3">{{ user }}</span>
@@ -39,7 +40,8 @@
                         </form>
                     {% else %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_list"%}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "home"%}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_list"%}">Eventos</a></li>
                         </ul>
                         <a href="{% url 'users:register' %}" class="btn btn-outline-dark" style="margin-right: 10px">Cadastrar</a>
                         <a href="{% url 'users:login' %}" class="btn btn-outline-dark">Login</a>
