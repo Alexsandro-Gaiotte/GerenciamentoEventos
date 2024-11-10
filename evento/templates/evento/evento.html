@@ -4,10 +4,6 @@ Shop Homepage - {{ evento.titulo }}
 {% endblock %}
 {% block content%}
 <section class="py-5">
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-success" href="{% url 'evento:evento_create' %}">Nova Tarefa</a>
-    </div>
-
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5"  style="max-height: 800px;">
@@ -21,6 +17,7 @@ Shop Homepage - {{ evento.titulo }}
                             <h5 class="fw-bolder">{{ evento.titulo }}</h5>
                             <!-- Product price-->
                             <h5 >{{ evento.data }}</h5>
+                            <h5 >{{ evento.criador }}</h5>
                             <div class="overflow-hidden" style="max-height: 100px; text-overflow: ellipsis;  display: -webkit-box; 
                             -webkit-box-orient: vertical; 
                             -webkit-line-clamp: 4; /* Defina o número máximo de linhas */" >

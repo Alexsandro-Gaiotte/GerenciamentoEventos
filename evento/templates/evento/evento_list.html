@@ -4,9 +4,11 @@ Shop Homepage - Novo Evento
 {% endblock %}
 {% block content%}
 <section class="py-5">
+    {% if user.is_authenticated %}
     <div class="d-flex justify-content-center">
         <a class="btn btn-success" href="{% url 'evento:evento_create' %}">Nova Tarefa</a>
     </div>
+    {% endif %}
 
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

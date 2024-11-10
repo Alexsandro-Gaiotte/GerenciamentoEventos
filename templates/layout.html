@@ -32,9 +32,10 @@
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_list"%}">Home</a></li>
                             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "evento:evento_create"%}">Adicionar Evento</a></li>
                         </ul>
-                        <form action="{% url 'users:logout'%}" method="POST">
+                        <span class="navbar-text text-dark me-3">Olá, {{ user }}</span>
+                        <form style='margin: 0' action="{% url 'users:logout'%}" method="POST">
                             {% csrf_token %}
-                            <button class="btn btn-outline-dark" title="User logout">Logout</button>                        
+                            <button class="btn btn-danger" title="User logout">Logout</button>                        
                         </form>
                     {% else %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">

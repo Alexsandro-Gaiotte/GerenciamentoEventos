@@ -10,6 +10,9 @@ def register_view(request):
             return redirect("evento:evento_list")
     else:
         form = UserCreationForm()
+    for field in form.fields.values():
+        field.widget.attrs.update({'class': 'form-control'})
+        
     return render(request, 'users/register.html', {"form":form})
 
 
@@ -24,7 +27,12 @@ def login_view(request):
                 return redirect("evento:evento_list")
     else:
         form = AuthenticationForm()
+        
+    for field in form.fields.values():
+        field.widget.attrs.update({'class': 'form-control'})
+    
     return render(request, 'users/login.html', {"form":form})
+
 
 def logout_view(request):
     if request.method == 'POST':

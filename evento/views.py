@@ -19,8 +19,8 @@ def evento_page(request, slug):
  # Verifica se o usuário está logado. Caso não esteja, será redirecionado para o login
 class EventoCreateView(LoginRequiredMixin, CreateView):
     model = Evento
-    fields = ["titulo", "data", "local", "descricao","imagem", "idCriador", 'slug']
-    success_url = reverse_lazy("evento_list")
+    fields = ["titulo", "data", "local", "descricao", "imagem", "slug"]
+    success_url = reverse_lazy("evento:evento_list")
     login_url = "/users/login/"  # URL para redirecionamento caso não esteja logado
     redirect_field_name = "next"  # Campo de redirecionamento após login
 
@@ -28,6 +28,11 @@ class EventoCreateView(LoginRequiredMixin, CreateView):
         form = super().get_form(form_class)
         # Adiciona a classe 'form-control' a todos os inputs, textareas e selects
         for field in form.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})  # ou outra classe desejada
+            field.widget.attrs.update({'class': 'form-control'})
         return form
+    
 
+    def form_valid(self, form):
+        # Define o usuário logado como criador do evento
+        form.instance.criador = self.request.user
+        return super().form_valid(form)
