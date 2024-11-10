@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Evento
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -46,3 +46,20 @@ class EventoDeleteView(DeleteView):
     # Redefinindo o método para garantir que apenas o criador possa excluir
     def get_queryset(self):
         return Evento.objects.filter(criador=self.request.user.id)
+
+
+class EventoUpdateView(UpdateView):
+    model = Evento
+    fields = ['titulo', 'data', 'local', 'descricao', 'imagem', 'slug']
+    template_name = 'evento/evento_edit.html'
+    success_url = reverse_lazy('evento:evento_list')  # Redireciona após a edição
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        # Adiciona a classe 'form-control' a todos os inputs, textareas e selects
+        for field in form.fields.values():
+            field.widget.attrs.update({'class': 'form-control m-3'})
+        return form
+
+    def get_queryset(self):
+        return Evento.objects.filter(id=self.kwargs['pk'])

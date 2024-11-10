@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Editando Evento - {{ evento.titulo }}
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class=" justify-content-center">
+           <h1 class="display-4 fw-bolder">Editar Evento: {{ evento.titulo }}</h1>         
+           <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renderiza os campos do formulário -->
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
