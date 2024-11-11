@@ -3,12 +3,16 @@
 {% block title %}Confirmar Exclusão{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Tem certeza de que deseja excluir o evento "{{ evento.titulo }}"?</h2>
-    <form method="post">
+<section style='padding:3%' class="text-center">
+    <div class="container">
+      <h1 class="m-4">Tem certeza de que deseja excluir o evento "{{ evento.titulo }}"?</h1>
+
+        <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Excluir</button>
-        <a href="{% url 'evento:evento_list' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+        <button type="submit" class="btn btn-danger my-2">Excluir</button>
+        <a href="{% url 'evento:evento_list' %}" class="btn btn-secondary my-2">Cancelar</a>
+        </form>
+    </div>
+</section> 
+
 {% endblock %}
